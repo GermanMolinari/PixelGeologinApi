@@ -1,29 +1,26 @@
-const Registro = require()
+const Registro = require('../model/Registro');
+
+
 class RegistroController{
 
     async guardarRegistro(req, res){
+        const body = req.body;
+        const registro = new Registro(body.fechaHora, body.latitud, body.longitud, body.idUser);
+        const res_guardar = await registro.guardarRegistroEnDb;
         res.json({
             success: true,
             messege : 'registro guardado'
        });
     }
 
-
     async listarRegistros(req, res){
-        res.json({
-            success : true,
-            message : 'exito',
-            result:
-            [
-                {
-                    id: 1,
-                    fechaHora: '24/12/97 , 14:00',
-                    latitud: -35.51366313,
-                    longitud : -23.1235123,
-                    idUser : 40382057
-                }
-            ]
-        })
+        res.json(await Registro.listar());
+    }
+
+    async listarRegistrosPorDni(req, res){
+        let dni = req.params.dni; //obtengo el dni desde el parametro de la request
+        dni = !dni ? '' : dni;
+        res.json(await Registro.listar(dni));
     }
 }
 module.exports = new RegistroController;

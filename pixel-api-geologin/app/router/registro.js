@@ -1,7 +1,8 @@
 var router = require('express').Router();
 var RegistroController = require('../controller/RegistroController');
 
-router.get('/registros', RegistroController.listarRegistros);
-router.post('/registros', RegistroController.guardarRegistro);
+router.get('/:dni', RegistroController.listarRegistrosPorDni);
+router.get('/', RegistroController.listarRegistros);
+router.post('/', RegistroController.guardarRegistro);
 
 module.exports = router; 
