@@ -3,7 +3,7 @@ const Respuesta = require('../model/Respuesta');
 
 const jsonConexion = {
     host: 'localhost',
-    user: 'gmolinar',
+    user: 'German',
     password: 'Canarias.2023',
     database: 'geologin',
     port: 3306
@@ -30,7 +30,7 @@ async function listar(query, tablas = false){
                 respuesta.exito = true;
                 respuesta.estado = 200;
                 respuesta.mensaje = "exito";
-                respuesta.resultado = !tablas ? filas[0] : filas;
+                respuesta.resultado = !tablas ? filas[0] : filas; //si tablas no es null o false o 0, le asigno el resultado de todas las filas leidas por la query
                 resolve(respuesta);
             });
 

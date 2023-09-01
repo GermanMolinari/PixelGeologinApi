@@ -9,14 +9,16 @@ class Registro{
 
     async guardarRegistroEnDb(){
         const query = `
-        INSERT INTO registroubicaciones
+        INSERT INTO registros
             (
+            idUser,
             fechaHora,
             latitud,
             longitud
             )
             VALUES
             (
+            '${this.idUsuario}'
             '${this.fechaHora}',
             '${this.latitud}',
             '${this.longitud}'
@@ -26,12 +28,12 @@ class Registro{
     }
 
     static async listar(){
-        const query = `select * from registrounicaciones`;
+        const query = `select * from registros`;
         return await db.listar(query, true); 
     }
 
     static async listarPorDni(dni){
-        const query = `select * from registrounicaciones where idUser like '%${dni}'`;
+        const query = `select * from registros where idUser like '%${dni}'`;
         return await db.listar(query, true); 
     }
 };
