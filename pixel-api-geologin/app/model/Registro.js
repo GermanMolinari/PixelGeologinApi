@@ -7,35 +7,34 @@ class Registro{
         this.idUsuario = idUsuario;
     }
 
-    async guardarRegistroEnDb(){
+    async guardarRegistroEnDb() {
         const query = `
-        INSERT INTO registros
+          INSERT INTO registros
             (
-            idUser,
-            fechaHora,
-            latitud,
-            longitud
+              idUser,
+              fechaHora,
+              latitud,
+              longitud
             )
             VALUES
             (
-            '${this.idUsuario}'
-            '${this.fechaHora}',
-            '${this.latitud}',
-            '${this.longitud}'
+              '${this.idUsuario}',
+              '${this.fechaHora}',
+              '${this.latitud}',
+              '${this.longitud}'
             );
-         `;
-         return await db.ejecutar(query);
-    }
-
+        `;
+        return await db.ejecutar(query);
+      }
     static async listar(){
         const query = `select * from registros`;
         return await db.listar(query, true); 
     }
 
-    static async listarPorDni(dni){
+   /* static async listarPorDni(dni){
         const query = `select * from registros where idUser like '%${dni}'`;
         return await db.listar(query, true); 
-    }
+    }*/
 };
 
 module.exports = Registro; 
