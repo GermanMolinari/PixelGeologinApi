@@ -8,6 +8,7 @@ class Registro{
     }
 
     async guardarRegistroEnDb() {
+      console.log('Entrando en guardarRegistroEnDb');
         const query = `
           INSERT INTO registros
             (
@@ -27,14 +28,15 @@ class Registro{
         return await db.ejecutar(query);
       }
     static async listar(){
+      console.log('Entrando en listar registros');
         const query = `select * from registros`;
         return await db.listar(query, true); 
     }
 
-   /* static async listarPorDni(dni){
+    static async listarPorDni(dni){
         const query = `select * from registros where idUser like '%${dni}'`;
         return await db.listar(query, true); 
-    }*/
+    }
 };
 
 module.exports = Registro; 

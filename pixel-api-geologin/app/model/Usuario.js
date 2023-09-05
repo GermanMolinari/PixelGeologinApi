@@ -11,6 +11,26 @@ class Usuario{
         const query = `select * from usuarios`;
         return await db.listar(query, true); 
     }
+
+    static async verificarCredenciales(username, password) {
+        try {
+          const query = `
+            SELECT * FROM usuarios
+            WHERE username = '${username}' AND password = '${password}';
+          `;
+          const resultado = await db.ejecutar(query);
+
+          if (resultado.exito && resultado.resultado.length > 0) {
+            return true;
+          }
+
+          return false;
+        } catch (error) {
+          console.error("Error al verificar credenciales:", error);
+          throw error;
+        }
+      }
+    
 };
 
 module.exports = Usuario;
