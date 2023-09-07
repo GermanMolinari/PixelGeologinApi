@@ -15,7 +15,7 @@ class Usuario{
     static async verificarCredenciales(username, password) {
         try {
           const query = `
-            SELECT * FROM usuarios
+            SELECT dni, username FROM usuarios
             WHERE username = '${username}' AND password = '${password}';
           `;
           const resultado = await db.ejecutar(query);

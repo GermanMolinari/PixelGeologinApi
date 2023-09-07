@@ -12,7 +12,7 @@ class UsuarioController{
           const usuario = await Usuario.verificarCredenciales(username, password);
     
           if(usuario) {
-                res.json({ exito: true, mensaje: "Autenticación exitosa" });
+            res.json({ exito: true, mensaje: "Autenticación exitosa", dni: usuario.dni });
           } else {
                 res.json({ exito: false, mensaje: "Credenciales incorrectas" });
           }
