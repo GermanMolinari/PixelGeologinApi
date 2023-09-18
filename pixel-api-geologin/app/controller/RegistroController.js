@@ -5,7 +5,7 @@ class RegistroController{
 
     async guardarRegistro(req, res){
         const body = req.body;
-        const registro = new Registro(body.fechaHora, body.latitud, body.longitud, body.idUser);
+        const registro = new Registro(body.fechaHora, body.latitud, body.longitud, body.dni, body.zona);
         const res_guardar = await registro.guardarRegistroEnDb();
         res.json(res_guardar);
         

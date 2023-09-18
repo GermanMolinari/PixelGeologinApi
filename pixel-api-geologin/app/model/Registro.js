@@ -1,10 +1,11 @@
 const db = require('../src/db');
 class Registro{
-    constructor(fechaHora, latitud, longitud, idUsuario){
+    constructor(fechaHora, latitud, longitud, idUser, zona){
         this.fechaHora = fechaHora;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.idUsuario = idUsuario;
+        this.idUser = idUser;
+        this.zona = zona;
     }
 
     async guardarRegistroEnDb() {
@@ -15,18 +16,22 @@ class Registro{
               idUser,
               fechaHora,
               latitud,
-              longitud
+              longitud,
+              zona
             )
             VALUES
             (
-              '${this.idUsuario}',
+              '${this.idUser}',
               '${this.fechaHora}',
               '${this.latitud}',
-              '${this.longitud}'
+              '${this.longitud}',
+              '${this.zona}'
             );
         `;
         return await db.ejecutar(query);
       }
+
+
     static async listar(){
       console.log('Entrando en listar registros');
         const query = `select * from registros`;
